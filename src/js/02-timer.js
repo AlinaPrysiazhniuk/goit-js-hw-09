@@ -35,9 +35,9 @@ const options = {
           //   minutes < 10 ? addLeadingZero(minutes) : minutes;
           // refs.dataSeconds.innerHTML =
           //   seconds < 10 ? addLeadingZero(seconds) : seconds;
-          if (days === 00 && hours === 00 && minutes === 00 && seconds === 00) {
-            clearInterval(timerActive);
-          }
+          // if (days === 00 && hours === 00 && minutes === 00 && seconds === 00) {
+          //   clearInterval(timerActive);
+          // }
         }, 1000);
       });
     }
