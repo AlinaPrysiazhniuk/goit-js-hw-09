@@ -29,12 +29,12 @@ const options = {
           const { days, hours, minutes, seconds } = convertMs(deltaTime);
 
           timer({ days, hours, minutes, seconds });
-          refs.dataDays.innerHTML = days < 10 ? addLeadingZero(days) : days;
-          refs.dataHours.innerHTML = hours < 10 ? addLeadingZero(hours) : hours;
-          refs.dataMinutes.innerHTML =
-            minutes < 10 ? addLeadingZero(minutes) : minutes;
-          refs.dataSeconds.innerHTML =
-            seconds < 10 ? addLeadingZero(seconds) : seconds;
+          // refs.dataDays.innerHTML = days < 10 ? addLeadingZero(days) : days;
+          // refs.dataHours.innerHTML = hours < 10 ? addLeadingZero(hours) : hours;
+          // refs.dataMinutes.innerHTML =
+          //   minutes < 10 ? addLeadingZero(minutes) : minutes;
+          // refs.dataSeconds.innerHTML =
+          //   seconds < 10 ? addLeadingZero(seconds) : seconds;
           if (days === 00 && hours === 00 && minutes === 00 && seconds === 00) {
             clearInterval(timerActive);
           }
@@ -65,6 +65,6 @@ function convertMs(ms) {
   return { days, hours, minutes, seconds };
 }
 
-function addLeadingZero(value) {
-  return String(value).padStart(2, '0');
-}
+// function addLeadingZero(value) {
+//   return String(value).padStart(2, '0');
+// }
