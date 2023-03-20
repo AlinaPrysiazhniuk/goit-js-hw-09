@@ -35,7 +35,6 @@ const options = {
           const deltaTime = dateChoosenMs - now;
           const { days, hours, minutes, seconds } = convertMs(deltaTime);
 
-          // timer({ days, hours, minutes, seconds });
           refs.dataDays.innerHTML = days < 10 ? addLeadingZero(days) : days;
           refs.dataHours.innerHTML = hours < 10 ? addLeadingZero(hours) : hours;
           refs.dataMinutes.innerHTML =
@@ -54,13 +53,6 @@ const options = {
 function addLeadingZero(value) {
   return String(value).padStart(2, '0');
 }
-
-// function timer({ days, hours, minutes, seconds }) {
-//   refs.dataDays.textContent = `${days}`;
-//   refs.dataHours.textContent = `${hours}`;
-//   refs.dataMinutes.textContent = `${minutes}`;
-//   refs.dataSeconds.textContent = `${seconds}`;
-// }
 
 flatpickr('#datetime-picker', options);
 function convertMs(ms) {
