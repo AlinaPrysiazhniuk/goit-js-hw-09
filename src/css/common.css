@@ -39,8 +39,8 @@ input {
 }
 
 .button {
-  width: 120;
-  height: 40;
+  width: 120px;
+  height: 40px;
   background-color: silver;
   border-radius: 2px;
   font-size: 20px;
