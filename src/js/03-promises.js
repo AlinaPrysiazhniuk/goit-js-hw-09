@@ -14,7 +14,7 @@ function createPromises(event) {
   event.preventDefault();
 
   let delay = refs.inputDelay.valueAsNumber;
-  const step = refs.inputDelay.valueAsNumber;
+  const step = refs.inputStep.valueAsNumber;
   const amount = refs.inputAmount.valueAsNumber;
 
   for (let i = 1; i <= amount; i++) {
