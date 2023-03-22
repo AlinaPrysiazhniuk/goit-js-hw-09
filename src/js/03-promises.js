@@ -10,6 +10,7 @@ const refs = {
 
 refs.form.addEventListener('submit', createPromises);
 
+///----------ФУНКЦІЯ, ЩО ВИКЛИКАЄТЬСЯ ПРИ ВІДПРАВЦІ ФОРМИ ТА ПОВЕРТАЄ РЕЗУЛЬТАТ СТВОРЕННЯ ПРОМІСА--------///
 function createPromises(event) {
   event.preventDefault();
 
@@ -18,18 +19,20 @@ function createPromises(event) {
   const amount = refs.inputAmount.valueAsNumber;
 
   for (let i = 1; i <= amount; i++) {
-    createPromise(i, delay)
+    createPromise(i, delay) //виклик функції по сто
       .then(({ position, delay }) => {
         Notiflix.Notify.success(`✅ Fulfilled promise ${i} in ${delay}ms`);
       })
       .catch(({ position, delay }) => {
         Notiflix.Notify.failure(`❌ Rejected promise ${i} in ${delay}ms`);
       });
-    delay += step;
+    delay += step; //затримка
   }
 }
 
+///----------ФУНКЦІЯ, ЩО СТВОРЮЄ ТА ПОВЕРТАЄ ПРОМІС--------///
 function createPromise(position, delay) {
+  //position - кількість промісів, що буде створена
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       const shouldResolve = Math.random() > 0.3;

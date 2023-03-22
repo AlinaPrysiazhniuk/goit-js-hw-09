@@ -11,9 +11,9 @@ const refs = {
   dataSeconds: document.querySelector('[data-seconds]'),
 };
 
-let timerActive = null;
+let timerActive = null; //задати дефолтне значення таймера null
 
-refs.buttonStart.disabled = true;
+refs.buttonStart.disabled = true; //кнопка старту в не активному стані
 
 const options = {
   enableTime: true,
@@ -22,26 +22,31 @@ const options = {
   minuteIncrement: 1,
   onClose(selectedDates) {
     if (selectedDates[0] <= new Date()) {
+      //якщо вибрана дата рівна сьогоднішньому дню, або з минулого  - помилка
       Notiflix.Notify.failure('Please choose a date in the future');
     } else {
-      refs.buttonStart.disabled = false;
+      //якщо дата з майбутнього, то .....
+      refs.buttonStart.disabled = false; // кнопка старт стає активною
       refs.buttonStart.addEventListener('click', () => {
+        //вішаємо обробник події на кнопку
         timerActive = setInterval(() => {
+          //змінній, що відповідає за значення таймера присвоюємо результтат виконання методу  setInterval() - щоби значення таймера оновлювалося кожну секунду
           refs.buttonStart.disabled = true;
           const dateChoosenMs = new Date(
             refs.input.value.replace(/-/g, '/')
           ).getTime();
-          const now = new Date().getTime();
-          const deltaTime = dateChoosenMs - now;
-          const { days, hours, minutes, seconds } = convertMs(deltaTime);
+          const now = new Date().getTime(); //отримуємо значення поточної дати у вигляді кількості мілісекунд
+          const deltaTime = dateChoosenMs - now; //шукаємо різницю у мілісекундах між вибраною датою та поточною
+          const { days, hours, minutes, seconds } = convertMs(deltaTime); //формуємо обʼєкт із дня, години, хвилини, секунди після конвертації мілісекунд
 
-          refs.dataDays.innerHTML = days < 10 ? addLeadingZero(days) : days;
+          refs.dataDays.innerHTML = days < 10 ? addLeadingZero(days) : days; //перевіряє значення дати, що міститься на сторінці і при умові, якщо дата менша 10, то за допомогою addLeadingZero додає їй нуль спочатку. Якщо дата рівна більша 10, то залишає те значення дати, що було
           refs.dataHours.innerHTML = hours < 10 ? addLeadingZero(hours) : hours;
           refs.dataMinutes.innerHTML =
             minutes < 10 ? addLeadingZero(minutes) : minutes;
           refs.dataSeconds.innerHTML =
             seconds < 10 ? addLeadingZero(seconds) : seconds;
           if (deltaTime < 1000) {
+            //якщо різниця в часі між теперішнім моментом і потрібним менше 1000 мілісекунд, тобто менше 1 секунди, то таймер зупинсяється
             clearInterval(timerActive);
           }
         }, 1000);
@@ -51,7 +56,7 @@ const options = {
 };
 
 function addLeadingZero(value) {
-  return String(value).padStart(2, '0');
+  return String(value).padStart(2, '0'); //приводить отримане значення до строки і додає на почткову позицію 0, якщо кількість цифр менша 2
 }
 
 flatpickr('#datetime-picker', options);
